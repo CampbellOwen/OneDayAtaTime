@@ -12,6 +12,7 @@ import android.widget.CalendarView;
 import android.widget.TextView;
 
 import com.hoobleooble.onedayatatime.Presenter.OverviewPresenter;
+import com.hoobleooble.onedayatatime.Utilities.Truss;
 
 import org.w3c.dom.Text;
 
@@ -67,9 +68,9 @@ public class Overview_Main extends AppCompatActivity {
         });
     }
 
-    public void setParagraph(String paragraph)
+    public void setParagraph(Truss paragraph)
     {
-        paragraphView.setText(paragraph);
+        paragraphView.setText(paragraph.build());
     }
 
     private void startQuestions()

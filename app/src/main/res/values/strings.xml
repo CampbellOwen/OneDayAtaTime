@@ -12,10 +12,10 @@
     <string name="hardcoded_madlibs_8"> I exercised for </string>
     <string name="hardcoded_madlibs_9"> minutes by </string>
     <string name="hardcoded_madlibs_10"> I took </string>
-    <string name="hardcoded_madlibs_11"> to myself today. </string>
+    <string name="hardcoded_madlibs_11"> hours to myself today </string>
     <string name="hardcoded_madlibs_12"> I spent time with </string>
     <string name="hardcoded_madlibs_13"> and I had </string>
-    <string name="hardcoded_madlibs_14"> Overall, today was a </string>
+    <string name="hardcoded_madlibs_14"> Overall, today was </string>
 
     <string name="streak_notifier">You\'re on a streak of </string>
 </resources>

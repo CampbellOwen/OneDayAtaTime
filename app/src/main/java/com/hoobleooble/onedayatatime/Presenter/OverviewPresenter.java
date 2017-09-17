@@ -9,6 +9,7 @@ import com.hoobleooble.onedayatatime.Model.Answer;
 import com.hoobleooble.onedayatatime.Model.DbHelper;
 import com.hoobleooble.onedayatatime.Overview_Main;
 import com.hoobleooble.onedayatatime.Utilities.ParagraphGenerator;
+import com.hoobleooble.onedayatatime.Utilities.Truss;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,7 +67,7 @@ public class OverviewPresenter {
     private void generateParagraph()
     {
         ParagraphGenerator paraGen = new ParagraphGenerator(viewContext);
-        String paragraph = paraGen.generate(answers);
+        Truss paragraph = paraGen.generate(answers);
 
         ((Overview_Main)viewContext).setParagraph(paragraph);
     }

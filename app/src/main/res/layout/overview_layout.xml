@@ -39,26 +39,25 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        app:srcCompat="@android:drawable/btn_star"
-    />
-
         <TextView
             android:id="@+id/streak_notifier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="start"
             android:layout_marginTop="60dp"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="20dp"
             android:textSize="15sp"
             android:text="@string/streak_notifier"
         />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
 
     </android.support.v7.widget.CardView>
 

@@ -18,6 +18,15 @@ public class Question implements Model {
     private int cid;
     private String type;
 
+    private int nextQid = -1;
+    private int nextSubQid = -1;
+
+    public int getNextQid(){ return nextQid; }
+    public int getNextSubQid(){ return nextSubQid; }
+
+    public void setNextQid(int val){ nextQid = val; }
+    public void setNextSubQid(int val){ nextSubQid = val;}
+
     public int getQid(){
         return qid;
     }

@@ -86,7 +86,10 @@
                 android:id="@+id/startQuestionsButton"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
+                android:background="@color/colorSecondary"
+                android:textColor="@color/textcoloronSecondary"
                 android:text="Start Questions">
 
             </Button>

@@ -30,6 +30,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Question> questions;
+    public RVAdapter adapter;
+    public RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,22 +40,36 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
+        rv = (RecyclerView) findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
         final QuestionsPresenter presenter = new QuestionsPresenter(this);
 
-        RVAdapter adapter = new RVAdapter(presenter, new ClickListener() {
+         adapter = new RVAdapter(presenter, new ClickListener() {
             @Override
             public void onPositionClicked(View v, int position) {
-                Log.d("CLICKED", Integer.toString(v.getId()) ) ;
-                View parent = (View)v.getParent();
-                EditText answer = (EditText) parent.findViewById(R.id.answer);
-                Log.d("CLICKED", answer.getText().toString());
-                int qid = presenter.getQuestions().get(position).getQid();
-                Log.d("CLICKED", Integer.toString(qid));
-                presenter.storeAnswer(answer.getText().toString(), qid);
+
+                switch(v.getId()){
+                    case R.id.yesButton:
+                            presenter.getNextQuestion(true);
+                        break;
+                    case R.id.noButton:
+                            presenter.getNextQuestion(false);
+                        break;
+                    case R.id.nextButton:
+                        Log.d("CLICKED", Integer.toString(v.getId()) ) ;
+                        View parent = (View)v.getParent();
+                        EditText answer = (EditText) parent.findViewById(R.id.answer);
+                        Log.d("CLICKED", answer.getText().toString());
+                        int qid = presenter.getQuestions().get(position).getQid();
+                        Log.d("CLICKED", Integer.toString(qid));
+                        presenter.storeAnswer(answer.getText().toString(), qid);
+                        presenter.getNextQuestion(true);
+                        break;
+                }
+
+
             }
         });
         rv.setAdapter(adapter);

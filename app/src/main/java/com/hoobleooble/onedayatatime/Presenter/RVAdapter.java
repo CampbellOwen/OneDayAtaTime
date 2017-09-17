@@ -59,7 +59,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         switch( viewType ){
             case 0:
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_bool, parent, false);
-                vh = new QuestionBoolViewHolder(v);
+                vh = new QuestionBoolViewHolder(v, listener);
                 break;
             case 1:
             default:
@@ -132,20 +132,32 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    public static class QuestionBoolViewHolder extends RecyclerView.ViewHolder
+    public static class QuestionBoolViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         CardView cv;
         TextView question;
         Button noButton;
         Button yesButton;
 
-        public QuestionBoolViewHolder(View itemView)
+
+        private WeakReference<ClickListener> listenerRef;
+
+        public QuestionBoolViewHolder(View itemView, ClickListener listener)
         {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
             question = (TextView)itemView.findViewById(R.id.question);
             noButton = (Button)itemView.findViewById(R.id.noButton);
             yesButton = (Button)itemView.findViewById(R.id.yesButton);
+            listenerRef = new WeakReference<>(listener);
+
+            noButton.setOnClickListener(this);
+            yesButton.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            listenerRef.get().onPositionClicked(view, getAdapterPosition());
         }
     }
 }

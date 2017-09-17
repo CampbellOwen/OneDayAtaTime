@@ -11,14 +11,14 @@ import android.util.Log;
 
 public class Answer implements Model {
     private int qid;
-    private int date;
+    private long date;
     private String answer;
 
     public int getQid(){
         return qid;
     }
 
-    public int getDate(){
+    public long getDate(){
         return date;
     }
 
@@ -26,19 +26,19 @@ public class Answer implements Model {
         return answer;
     }
 
-    public Answer(SQLiteDatabase db, int qid, int date)
+    public Answer(SQLiteDatabase db, int qid, long date)
     {
         populate(db, qid, date);
     }
 
-    private Answer( int qid, int date, String answer )
+    private Answer( int qid, long date, String answer )
     {
         this.qid = qid;
         this.date = date;
         this.answer = answer;
     }
 
-    private void populate(SQLiteDatabase db, int qid, int date)
+    private void populate(SQLiteDatabase db, int qid, long date)
     {
         this.qid = qid;
         this.date = date;
@@ -53,7 +53,7 @@ public class Answer implements Model {
                 " = ?";
         String[] selectionArgs = {
                 Integer.toString(qid),
-                Integer.toString(date)
+                Long.toString(date)
         };
 
         Cursor cursor = db.query(
@@ -84,7 +84,7 @@ public class Answer implements Model {
         return db.insert(AnswerContract.AnswerEntry.TABLE_NAME, null, values);
     }
 
-    public static Answer Create(SQLiteDatabase db, int qid, int date, String answer)
+    public static Answer Create(SQLiteDatabase db, int qid, long date, String answer)
     {
         Answer newAnswer = new Answer(qid, date, answer);
         newAnswer.store(db);

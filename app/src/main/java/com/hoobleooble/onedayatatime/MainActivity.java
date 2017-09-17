@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import com.hoobleooble.onedayatatime.Model.DbHelper;
 import com.hoobleooble.onedayatatime.Model.Question;
 import com.hoobleooble.onedayatatime.Model.QuestionContract;
+import com.hoobleooble.onedayatatime.Presenter.RVAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +53,21 @@ public class MainActivity extends AppCompatActivity {
         questions = new ArrayList<Question>();
         questions.add(new Question(db, 1));
         questions.add(new Question(db, 2));
+        questions.add(new Question(db, 3));
+
+        questions.add(new Question(db, 4));
+
+        questions.add(new Question(db, 5));
+
+        questions.add(new Question(db, 6));
+
+        questions.add(new Question(db, 7));
+
+
+        Log.d("QUESTIONS", questions.get(1).getSubText());
+
+        RVAdapter adapter = new RVAdapter(questions);
+        rv.setAdapter(adapter);
 
         //dbHelper.onUpgrade(db, 1, 1);
 

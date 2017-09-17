@@ -27,7 +27,7 @@
         android:id="@+id/rv"
         />
 
-
+    <!--<include layout="@layout/card_string"/>-->
 
     <!--<include layout="@layout/card_string" />
 

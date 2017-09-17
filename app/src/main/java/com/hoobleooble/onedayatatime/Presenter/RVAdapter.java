@@ -29,18 +29,26 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.QuestionViewHolder
 
     @Override
     public QuestionViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout)
-        return null;
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_string, parent, false);
+        QuestionViewHolder qvh = new QuestionViewHolder(v);
+        return qvh;
     }
 
     @Override
     public void onBindViewHolder(QuestionViewHolder holder, int position) {
-
+        holder.question.setText(questions.get(position).getText());
+        holder.subText.setText(questions.get(position).getSubText());
     }
 
     @Override
     public int getItemCount() {
         return questions.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView)
+    {
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
     public static class QuestionViewHolder extends RecyclerView.ViewHolder

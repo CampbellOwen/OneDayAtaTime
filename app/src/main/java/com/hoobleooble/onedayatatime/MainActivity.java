@@ -49,22 +49,25 @@ public class MainActivity extends AppCompatActivity {
          adapter = new RVAdapter(presenter, new ClickListener() {
             @Override
             public void onPositionClicked(View v, int position) {
-
+                int qid = presenter.getQuestions().get(position).getQid();
+                long date;
+                date = getIntent().getLongExtra("date", 0L);
                 switch(v.getId()){
                     case R.id.yesButton:
                             presenter.getNextQuestion(true);
+                            presenter.storeAnswer("yes", qid, date);
                         break;
                     case R.id.noButton:
                             presenter.getNextQuestion(false);
+                            presenter.storeAnswer("no", qid, date);
                         break;
                     case R.id.nextButton:
                         Log.d("CLICKED", Integer.toString(v.getId()) ) ;
                         View parent = (View)v.getParent();
                         EditText answer = (EditText) parent.findViewById(R.id.answer);
                         Log.d("CLICKED", answer.getText().toString());
-                        int qid = presenter.getQuestions().get(position).getQid();
                         Log.d("CLICKED", Integer.toString(qid));
-                        presenter.storeAnswer(answer.getText().toString(), qid);
+                        presenter.storeAnswer(answer.getText().toString(), qid, date);
                         presenter.getNextQuestion(true);
                         break;
                 }

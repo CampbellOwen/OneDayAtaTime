@@ -15,6 +15,7 @@ import com.hoobleooble.onedayatatime.Overview_Main;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,10 +52,9 @@ public class QuestionsPresenter {
         return this.questions;
     }
 
-    public boolean storeAnswer(String answer, int qid)
+    public boolean storeAnswer(String answer, int qid, long date)
     {
         try{
-            long date = Calendar.getInstance().getTime().getTime() / 86400000;
 
             Answer.Create(db, qid, date, answer);
             Log.d("DB", "Successfully saved answer: qid: " + Integer.toString(qid) + ", date: " + Long.toString(date) + ", answer: " + answer);

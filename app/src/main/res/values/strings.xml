@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">One Day At a Time</string>
     <string name="action_settings">Settings</string>
+    <string name="questions_name">Daily Questions</string>
+    <string name="title_activity_overview__main">Overview</string>
+
+    <string name="hardcoded_madlibs_1"> I started the day off by getting </string>
+    <string name="hardcoded_madlibs_2"> I ate </string>
+    <string name="hardcoded_madlibs_3"> for breakfast, </string>
+    <string name="hardcoded_madlibs_4"> for lunch, and </string>
+    <string name="hardcoded_madlibs_5"> for dinner. </string>
+    <string name="hardcoded_madlibs_6"> Overall, I ate </string>
+    <string name="hardcoded_madlibs_7"> I exercised for </string>
+    <string name="hardcoded_madlibs_8"> minutes by </string>
+    <string name="hardcoded_madlibs_9"> I took </string>
+    <string name="hardcoded_madlibs_10"> to myself today. </string>
+    <string name="hardcoded_madlibs_11"> I spent time with </string>
+    <string name="hardcoded_madlibs_12"> and I had a </string>
+    <string name="hardcoded_madlibs_13"> time. </string>
+    <string name="hardcoded_madlibs_14"> Overall, today was a </string>
 </resources>

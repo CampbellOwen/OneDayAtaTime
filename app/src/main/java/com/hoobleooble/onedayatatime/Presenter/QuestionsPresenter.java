@@ -73,8 +73,9 @@ public class QuestionsPresenter {
         if( nextQid == -1 ){
             //question time is OVER
             //switch to da overview
-            Intent intent = new Intent(viewContext, Overview_Main.class);
-            viewContext.startActivity(intent);
+            viewContext.finish();
+            //Intent intent = new Intent(viewContext, Overview_Main.class);
+            //viewContext.startActivity(intent);
         }
         else {
             questions.add(masterQuestions.get(nextQid));

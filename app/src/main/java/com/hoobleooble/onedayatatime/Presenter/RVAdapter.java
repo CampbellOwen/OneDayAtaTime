@@ -81,6 +81,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case 2:
                 QuestionStringViewHolder qivh = (QuestionStringViewHolder)holder;
                 qivh.answer.setInputType(InputType.TYPE_CLASS_NUMBER);
+                qivh.answer.setText("");
             case 1:
             default:
                 QuestionStringViewHolder qsvh = (QuestionStringViewHolder)holder;

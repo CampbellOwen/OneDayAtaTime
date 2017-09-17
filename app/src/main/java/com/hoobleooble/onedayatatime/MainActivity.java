@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewParent;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import com.hoobleooble.onedayatatime.Model.Answer;
 import com.hoobleooble.onedayatatime.Model.DbHelper;
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
-
         final QuestionsPresenter presenter = new QuestionsPresenter(this);
 
          adapter = new RVAdapter(presenter, new ClickListener() {
@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         rv.setAdapter(adapter);
-
-        //dbHelper.onUpgrade(db, 1, 1);
 
         //Question question = Question.Create(db, 2, 1, "Did you eat breakfast?", "bool");
 

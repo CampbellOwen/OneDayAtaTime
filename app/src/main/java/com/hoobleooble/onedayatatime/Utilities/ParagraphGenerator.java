@@ -28,6 +28,9 @@ public class ParagraphGenerator {
     public Truss generate(HashMap<Integer, Answer> answers)
     {
         Truss sb = new Truss();
+        if( answers.isEmpty()){
+            return sb;
+        }
         sb.append(context.getText(R.string.hardcoded_madlibs_1));
         Answer ans;
 

@@ -67,7 +67,7 @@ public class RatingConverter {
                     case 10:
                         return "very healthily";
                     default:
-                        return "food";
+                        return "nothing";
                 }
 
             case sleep:

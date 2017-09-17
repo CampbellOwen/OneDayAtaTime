@@ -42,9 +42,10 @@ public class Overview_Main extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 calendar.clear();
                 calendar.set(year, month, dayOfMonth);
-                presenter.setCurrentDate( calendar.getTime() );
-                presenter.updateAnswers();
-                Log.d("CALENDAR", Long.toString(presenter.getCurrentDate().getTime()));
+                presenter.setCurrentDate( calendar.getTime().getTime() );
+                getParagraph();
+                Log.d("CALENDAR", Long.toString(presenter.getCurrentDate()));
+
             }
         });
 
@@ -53,30 +54,42 @@ public class Overview_Main extends AppCompatActivity {
         calendar.setDate(now.getTime());
 
         Calendar cal = Calendar.getInstance();
-        cal.setTime(now);
-        cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
-        presenter.setCurrentDate(cal.getTime());
+        cal.clear();
+        cal.set(2017, 10, 17);
+
+        presenter.setCurrentDate(cal.getTime().getTime());
+        getParagraph();
 
 
-
-        Button quiz = (Button)findViewById(R.id.startQuestionsButton);
-        quiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startQuestions();
-            }
-        });
+//        Button quiz = (Button)findViewById(R.id.startQuestionsButton);
+//        quiz.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startQuestions();
+//            }
+//        });
     }
 
-    public void setParagraph(Truss paragraph)
+    private void getParagraph()
     {
-        paragraphView.setText(paragraph.build());
+        CharSequence para = presenter.updateAnswers();
+        if (para.equals("")){
+            startQuestions();
+        }
+        else{
+            setParagraph(para);
+        }
+    }
+
+    public void setParagraph(CharSequence paragraph)
+    {
+        paragraphView.setText(paragraph);
     }
 
     private void startQuestions()
     {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("date", presenter.getCurrentDate().getTime());
+        intent.putExtra("date", presenter.getCurrentDate());
         this.startActivity(intent);
     }
 

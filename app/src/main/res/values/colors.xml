@@ -7,7 +7,7 @@
     <color name="colorPrimaryDark">#BA6B6C</color>
     <color name="colorPrimaryLight">#FFCCCB</color>
     <color name="colorAccent">#B2EBF2</color>
-    <color name="textcoloronSecondary">#000000</color>
+    <color name="textcoloronSecondary">#ffffff</color>
     <color name="textcoloronAccent">#ffffff</color>
     <color name="appbackgroundColor">#e8e8e8</color>
     <color name="yesbuttonColor">#a5d6a7</color>

@@ -2,6 +2,7 @@ package com.hoobleooble.onedayatatime.Presenter;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.hoobleooble.onedayatatime.Model.Question;
 import com.hoobleooble.onedayatatime.R;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -20,24 +22,30 @@ import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
-    List<Question> questions;
-    public RVAdapter(List<Question> questions)
+    QuestionsPresenter presenter;
+    private ClickListener listener;
+
+    public RVAdapter(QuestionsPresenter presenter, ClickListener listener)
     {
-        this.questions = questions;
+        this.presenter = presenter;
+        this.listener = listener;
     }
 
     @Override
     public int getItemViewType(int position)
     {
-        String questionType = questions.get(position).getType();
+        String questionType = presenter.getQuestions().get(position).getType();
         int type;
         switch (questionType){
             case "bool":
                 type = 0;
                 break;
             case "string":
-            default:
                 type = 1;
+                break;
+            case "int":
+            default:
+                type = 2;
                 break;
         }
 
@@ -56,7 +64,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             case 1:
             default:
                 v = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_string, parent, false);
-                vh = new QuestionStringViewHolder(v);
+                vh = new QuestionStringViewHolder(v, listener);
                 break;
         }
         return vh;
@@ -68,21 +76,23 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         {
             case 0:
                 QuestionBoolViewHolder qbvh = (QuestionBoolViewHolder)holder;
-                qbvh.question.setText(questions.get(position).getText());
+                qbvh.question.setText(presenter.getQuestions().get(position).getText());
                 break;
+            case 2:
+                QuestionStringViewHolder qivh = (QuestionStringViewHolder)holder;
+                qivh.answer.setInputType(InputType.TYPE_CLASS_NUMBER);
             case 1:
             default:
                 QuestionStringViewHolder qsvh = (QuestionStringViewHolder)holder;
-                qsvh.question.setText(questions.get(position).getText());
-                qsvh.subText.setText(questions.get(position).getSubText());
+                qsvh.question.setText(presenter.getQuestions().get(position).getText());
+                qsvh.subText.setText(presenter.getQuestions().get(position).getSubText());
                 break;
         }
-
     }
 
     @Override
     public int getItemCount() {
-        return questions.size();
+        return presenter.getQuestions().size();
     }
 
     @Override
@@ -91,15 +101,17 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    public static class QuestionStringViewHolder extends RecyclerView.ViewHolder
+    public static class QuestionStringViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
+        private WeakReference<ClickListener> listenerRef;
+
         CardView cv;
         TextView question;
         TextView subText;
         EditText answer;
         Button button;
 
-        public QuestionStringViewHolder(View itemView)
+        public QuestionStringViewHolder(View itemView, ClickListener listener)
         {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
@@ -107,6 +119,16 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             subText = (TextView)itemView.findViewById(R.id.subtext);
             answer = (EditText)itemView.findViewById(R.id.answer);
             button = (Button)itemView.findViewById(R.id.nextButton);
+            listenerRef = new WeakReference<>(listener);
+
+            button.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+            listenerRef.get().onPositionClicked(v, getAdapterPosition());
         }
     }
 

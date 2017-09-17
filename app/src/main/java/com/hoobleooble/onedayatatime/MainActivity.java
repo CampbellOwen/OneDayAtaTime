@@ -13,10 +13,15 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewParent;
+import android.widget.EditText;
 
+import com.hoobleooble.onedayatatime.Model.Answer;
 import com.hoobleooble.onedayatatime.Model.DbHelper;
 import com.hoobleooble.onedayatatime.Model.Question;
 import com.hoobleooble.onedayatatime.Model.QuestionContract;
+import com.hoobleooble.onedayatatime.Presenter.ClickListener;
+import com.hoobleooble.onedayatatime.Presenter.QuestionsPresenter;
 import com.hoobleooble.onedayatatime.Presenter.RVAdapter;
 
 import java.util.ArrayList;
@@ -33,40 +38,24 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         RecyclerView rv = (RecyclerView) findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
 
+        final QuestionsPresenter presenter = new QuestionsPresenter(this);
 
-        DbHelper dbHelper = new DbHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        questions = new ArrayList<Question>();
-        questions.add(new Question(db, 1));
-        questions.add(new Question(db, 2));
-        questions.add(new Question(db, 3));
-
-        questions.add(new Question(db, 4));
-
-        questions.add(new Question(db, 5));
-
-        questions.add(new Question(db, 6));
-
-        questions.add(new Question(db, 7));
-
-
-        Log.d("QUESTIONS", questions.get(1).getSubText());
-
-        RVAdapter adapter = new RVAdapter(questions);
+        RVAdapter adapter = new RVAdapter(presenter, new ClickListener() {
+            @Override
+            public void onPositionClicked(View v, int position) {
+                Log.d("CLICKED", Integer.toString(v.getId()) ) ;
+                View parent = (View)v.getParent();
+                EditText answer = (EditText) parent.findViewById(R.id.answer);
+                Log.d("CLICKED", answer.getText().toString());
+                int qid = presenter.getQuestions().get(position).getQid();
+                Log.d("CLICKED", Integer.toString(qid));
+                presenter.storeAnswer(answer.getText().toString(), qid);
+            }
+        });
         rv.setAdapter(adapter);
 
         //dbHelper.onUpgrade(db, 1, 1);

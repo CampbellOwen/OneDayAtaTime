@@ -7,9 +7,12 @@ import android.util.Log;
 
 import com.hoobleooble.onedayatatime.Model.Answer;
 import com.hoobleooble.onedayatatime.Model.DbHelper;
+import com.hoobleooble.onedayatatime.Overview_Main;
+import com.hoobleooble.onedayatatime.Utilities.ParagraphGenerator;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,7 +24,7 @@ public class OverviewPresenter {
     private Context viewContext;
     private Date currentDate;
     private DbHelper dbHelper;
-    List<Answer> answers;
+    HashMap<Integer, Answer> answers;
 
 
     public Date getCurrentDate()
@@ -38,7 +41,7 @@ public class OverviewPresenter {
     {
         viewContext = context;
         dbHelper = new DbHelper(context);
-        answers = new ArrayList<Answer>();
+        answers = new HashMap<Integer, Answer>();
 
     }
 
@@ -47,7 +50,7 @@ public class OverviewPresenter {
         for(int i = 1; i<=27; i++){
             try {
                 Answer ans = new Answer(dbHelper.getReadableDatabase(), i, currentDate.getTime());
-                answers.add(ans);
+                answers.put(ans.getQid(), ans);
 
                 Log.d("ANSWER", "RETRIEVED ANSWER: qid: " + Integer.toString(ans.getQid()) + ", date: " + Long.toString(ans.getDate()) + ", answer: " + ans.getAnswer());
             }
@@ -62,6 +65,9 @@ public class OverviewPresenter {
 
     private void generateParagraph()
     {
+        ParagraphGenerator paraGen = new ParagraphGenerator(viewContext);
+        String paragraph = paraGen.generate(answers);
 
+        ((Overview_Main)viewContext).setParagraph(paragraph);
     }
 }

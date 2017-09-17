@@ -10,4 +10,6 @@
     <color name="textcoloronSecondary">#000000</color>
     <color name="textcoloronAccent">#ffffff</color>
     <color name="appbackgroundColor">#e8e8e8</color>
+    <color name="yesbuttonColor">#a5d6a7</color>
+    <color name="nobuttonColor">#EF9A9A</color>
 </resources>

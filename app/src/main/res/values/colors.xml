@@ -6,5 +6,8 @@
     <color name="colorSecondary">#A5D6A7</color>
     <color name="colorSecondaryDark">#75A478</color>
     <color name="colorSecondaryLight">#D7FFD9</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#26c6da</color>
+    <color name="textcoloronPrimary">#000000</color>
+    <color name="textcoloronAccent">#ffffff</color>
+    <color name="appbackgroundColor">#e8e8e8</color>
 </resources>

@@ -86,6 +86,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 QuestionStringViewHolder qsvh = (QuestionStringViewHolder)holder;
                 qsvh.question.setText(presenter.getQuestions().get(position).getText());
                 qsvh.subText.setText(presenter.getQuestions().get(position).getSubText());
+                qsvh.answer.setText("");
                 break;
         }
     }

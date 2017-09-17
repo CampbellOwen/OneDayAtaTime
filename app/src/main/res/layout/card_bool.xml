@@ -6,7 +6,7 @@
         android:id="@+id/cv"
         android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         card_view:cardCornerRadius="2dp">
         <LinearLayout
             android:orientation="vertical"
@@ -15,20 +15,23 @@
             <TextView
                 android:id="@+id/question"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
-                android:textSize="18sp"
+                android:layout_marginTop="30dp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:text="Did you eat breakfast?"/>
 
 
             <LinearLayout
-                android:layout_gravity="center_horizontal"
+
+                android:layout_gravity="end"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:layout_marginEnd="12dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
                 <Button
                     android:id="@+id/noButton"
@@ -36,11 +39,10 @@
                     android:layout_height="36dp"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
                     android:layout_marginRight="4dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_gravity="end"
                     android:textColor="@color/textcoloronAccent"
                     android:background="@color/colorPrimaryDark"
                     android:text="No" />
@@ -49,14 +51,13 @@
                     android:id="@+id/yesButton"
                     android:layout_width="64dp"
                     android:layout_height="36dp"
-                    android:layout_gravity="end"
                     android:layout_marginLeft="4dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginRight="8dp"
                     android:background="@color/yesbuttonColor"
                     android:paddingLeft="8dp"
                     android:paddingRight="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
                     android:text="Yes"
                     android:textColor="@color/textcoloronAccent" />
 
